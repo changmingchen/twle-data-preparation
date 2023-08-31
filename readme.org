@@ -1,0 +1,79 @@
+
+* tests
+
+** versions
+
+*** 0
+
+
+| 10 | aims, references |
+|    |                  |
+| 20 | version          |
+|    |                  |
+| 30 |                  |
+|    |                  |
+
+
+*** 10
+
+
+*** 20
+:PROPERTIES:
+:EXPORT_FILE_NAME: ./tests/versions.ipynb
+:END:
+
+
+**** version
+
+
+#+BEGIN_SRC python
+
+  import pdfplumber
+  import pandas as pd
+
+  print(pdfplumber.__version__)
+
+#+END_SRC
+
+
+* requirements
+
+** 0
+
+
+| 10 |                 |
+|    |                 |
+| 20 |                 |
+|    |                 |
+| 30 | folders anatomy |
+|    |                 |
+| 40 |                 |
+
+
+** 10
+
+
+** 20
+
+
+** 30
+
+
+| container mount point | repo | repo folder |
+|                       |      |             |
+| /home/appuser/files   |    1 | files       |
+|                       |      |             |
+| /home/appuser/app     |    2 | /           |
+
+
+# repo 1
+
+
+https://github.com/changmingchen/twle
+
+
+
+# repo 2
+
+
+https://github.com/changmingchen/twle-data-preparation
