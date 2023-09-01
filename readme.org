@@ -1,7 +1,413 @@
 
 * tests
 
-** versions
+** tests/path/
+
+*** 0
+
+
+| 10 | aims, references                         |
+|    |                                          |
+| 20 | mkdir                                    |
+|    |                                          |
+| 30 |                                          |
+|    |                                          |
+| 40 | os.path.expanduser("~") os.getcwd()      |
+|    |                                          |
+| 50 | pathofpdf                                |
+|    |                                          |
+| 60 | from tests/pathofpdf.py import pathofpdf |
+|    |                                          |
+
+
+*** 10
+
+
+https://pypi.org/project/pdfplumber/
+
+
+*** 20
+
+
+#+HEADERS: :results silent
+#+HEADERS: :results raw
+#+BEGIN_SRC sh
+
+  pwd 
+  
+#+END_SRC
+
+
+#+HEADERS: :results silent
+#+HEADERS: :results raw
+#+BEGIN_SRC sh
+
+  ls -l tests
+
+#+END_SRC
+
+
+#+HEADERS: :results silent
+#+HEADERS: :results raw
+#+BEGIN_SRC sh
+
+  mkdir tests/path
+
+#+END_SRC
+
+
+*** 40
+:PROPERTIES:
+:EXPORT_FILE_NAME: ./tests/path/ospath.ipynb
+:END:
+
+
+**** os.path.expanduser("~")
+
+#+BEGIN_SRC python
+
+  import os
+
+  home_directory = os.path.expanduser("~")
+
+  print("Home Directory:", home_directory)
+
+#+END_SRC
+
+
+**** os.getcwd()
+
+#+BEGIN_SRC python
+
+  import os
+
+  cwd = os.getcwd()  # Get current working directory
+
+  print( cwd )
+  
+#+END_SRC
+
+
+*** 50
+:PROPERTIES:
+:EXPORT_FILE_NAME: ./tests/path/pathofpdf.ipynb
+:END:
+
+
+**** pathofpdf
+
+#+BEGIN_SRC python
+
+  import os
+
+  home_path = os.path.expanduser("~")
+
+  folder = "files/111m1"
+
+  file = "111020_33_醫學(五)（包括外科.pdf"
+
+  pathofpdf = os.path.join(home_path, folder, file)
+
+  if os.path.exists(pathofpdf):
+    # Do something with the file
+      print( pathofpdf )
+  else:
+    print("File does not exist.")
+
+
+#+END_SRC
+
+
+**** os.path.expanduser("~")
+
+#+BEGIN_SRC python
+
+  import os
+
+  home_directory = os.path.expanduser("~")
+
+  print("Home Directory:", home_directory)
+
+#+END_SRC
+
+
+**** os.getcwd()
+
+#+BEGIN_SRC python
+
+  import os
+
+  cwd = os.getcwd()  # Get current working directory
+
+  print( cwd )
+  
+#+END_SRC
+
+
+*** 60
+:PROPERTIES:
+:EXPORT_FILE_NAME: ./tests/path/pathofpdf.ipynb
+:END:
+
+
+**** pathofpdf
+
+#+BEGIN_SRC python
+
+  import os
+
+  from context import pathofpdf
+
+  if os.path.exists(pathofpdf):
+    # Do something with the file
+      print( pathofpdf )
+  else:
+    print("File does not exist.")
+
+
+#+END_SRC
+
+
+**** os.path.expanduser("~")
+
+#+BEGIN_SRC python
+
+  import os
+
+  home_directory = os.path.expanduser("~")
+
+  print("Home Directory:", home_directory)
+
+#+END_SRC
+
+
+**** os.getcwd()
+
+#+BEGIN_SRC python
+
+  import os
+
+  cwd = os.getcwd()  # Get current working directory
+
+  print( cwd )
+  
+#+END_SRC
+
+
+** tests/text/
+
+*** single page text
+
+**** 0
+
+
+| 10 | aims, references       |
+|    |                        |
+| 20 | mkdir                  |
+|    |                        |
+| 30 |                        |
+|    |                        |
+| 40 | single-page-text.ipynb |
+|    |                        |
+
+
+**** 10
+
+
+https://pypi.org/project/pdfplumber/
+
+
+**** 20
+
+
+#+HEADERS: :results silent
+#+HEADERS: :results raw
+#+BEGIN_SRC sh
+
+  pwd 
+  
+#+END_SRC
+
+
+#+HEADERS: :results silent
+#+HEADERS: :results raw
+#+BEGIN_SRC sh
+
+  ls -l tests
+
+#+END_SRC
+
+
+#+HEADERS: :results silent
+#+HEADERS: :results raw
+#+BEGIN_SRC sh
+
+  mkdir tests/text
+
+#+END_SRC
+
+
+**** 40
+:PROPERTIES:
+:EXPORT_FILE_NAME: ./tests/text/single-page-text.ipynb
+:END:
+
+
+***** extract_text()
+
+
+#+BEGIN_SRC python
+
+  import pdfplumber
+
+  import os
+
+  home_path = os.path.expanduser("~")
+
+  folder = "files/111m1"
+
+  file = "111020_33_醫學(五)（包括外科.pdf"
+
+  pathofpdf = os.path.join(home_path, folder, file)
+
+  with pdfplumber.open( pathofpdf ) as pdf:
+      first_page = pdf.pages[0]
+      print( first_page.extract_text() )
+      # print( first_page.chars[0] )
+
+#+END_SRC
+
+
+***** extract_text(), absolute and relative path
+
+
+#+BEGIN_SRC python
+
+  import pdfplumber
+
+  pathofpdf = "/home/appuser/files/111m1/111020_33_醫學(五)（包括外科.pdf"
+  # pathofpdf = "../../../files/111m1/111020_33_醫學(五)（包括外科.pdf"
+
+  with pdfplumber.open( pathofpdf ) as pdf:
+      first_page = pdf.pages[0]
+      print( first_page.extract_text() )
+      # print( first_page.chars[0] )
+
+#+END_SRC
+
+111年第一次專門職業及技術人員高等考試醫師牙醫師藥師考試分階
+段考試、醫事檢驗師、醫事放射師、物理治療師考試
+代 號：3302
+類科名稱：醫師(二)
+科目名稱：醫學(五)（包括外科、骨科、泌尿科等科目及其相關臨床實例與醫學倫理）
+考試時間：2小時 座號：___________
+※本科目測驗試題為單一選擇題，請就各選項中選出一個正確或最適當的答案，複選作答者，該題不予計分!
+※注意：本試題禁止使用電子計算器
+1.下列敘述，何者正確？
+A.病人從上消化道或腹瀉大量流失碳酸氫鹽（bicarbonate）時，會造成鹼血症（alkalemia）
+B.醫源性呼吸性酸中毒（iatrogenic respiratory acidosis）常見的原因之一是氣管插管後的呼吸器過度機械性通氣
+（mechanical ventilation）
+C.敗血性休克（septic shock）病人會有代謝性鹼中毒（metabolic alkalosis）
+D.快速靜脈輸注大量等張氯化鈉溶液（isotonic sodium chloride solutions）時，會發生代謝性酸血症（metabolic
+acidemia）
+2.絞刑骨折（hangman's fracture）是指下列何者？
+A.disruption of C1 ring in multiple locations ; blow-out ring
+B.odontoid fracture, type II : through base
+C.odontoid fracture, type I : tip of odontoid
+D.bilateral C2 pedicles with spondylolisthesis
+3.在臺灣，目前下列何者不適合作為腦死器官的捐贈者？
+A.血清中B型肝炎病毒（hepatitis B virus）表面抗原陽性之腦死病人
+B.血清中巨細胞病毒（cytomegalovirus）抗體陽性之腦死病人
+C.血清中人類嗜T淋巴球病毒（human T-lymphotropic virus）抗體陽性之腦死病人
+D.血清中弓漿蟲（toxoplasma）抗體陽性之腦死病人
+4.一位53歲女性駕駛小轎車與對側高速來車相撞，立刻被緊急送至第一級（Level I）創傷中心急救。到院時意識
+狀態清楚，主訴兩側胸部及腹部疼痛、兩側手腕及左下肢劇痛。理學檢查發現血壓80/50 mmHg、心跳115次/
+分、呼吸20次/分，給與氧氣5公升/分鐘使用後，動脈血氧飽和度可達98%；另左胸呼吸音減低，腹部微脹有明
+顯瀰漫性壓痛，雙側手腕變形及左股骨開放性骨折。經快速大量輸液治療後血壓上升至100/55 mmHg，故安排
+緊急全身顯影電腦斷層，結果如附圖。病人送回急救區後發現意識模糊，但對深痛刺激有反應，生命徵象為血
+壓60/40 mmHg、心跳125次/分、呼吸20次/分，動脈血氧飽和度無法偵測。下列何種醫療處置較為適當？
+A.再次給予快速大量輸液後立即再安排一次腦部電腦斷層
+
+
+
+***** chars[]
+
+
+#+BEGIN_SRC python
+
+  import pdfplumber
+
+  pathofpdf = "../../../files/111m1/111020_33_醫學(五)（包括外科.pdf"
+
+  with pdfplumber.open( pathofpdf ) as pdf:
+      first_page = pdf.pages[0]
+      print(first_page.chars[0])
+
+#+END_SRC
+
+{'matrix': (0.739011017207873, 0.0, 0.0, 0.739011017207873, 39.34615559257678, 791.4886591493051), 'fontname': 'DFKaiShu-SB-Estd-BF', 'adv': 12.0, 'upright': True, 'x0': 39.34615559257678, 'y0': 787.95526272328, 'x1': 48.21428779907126, 'y1': 805.691527136269, 'width': 8.86813220649448, 'height': 17.73626441298893, 'size': 17.73626441298893, 'object_type': 'char', 'page_number': 1, 'ncs': 'DeviceRGB', 'text': '1', 'stroking_color': (0, 0, 0), 'stroking_pattern': None, 'non_stroking_color': (0, 0, 0), 'non_stroking_pattern': None, 'top': 36.228452863731036, 'bottom': 53.964717276719966, 'doctop': 36.228452863731036}
+
+
+** tests/context.py
+
+*** 0
+
+| 10 | aims, references   |
+|    |                    |
+| 20 | tests/context.py |
+|    |                    |
+| 30 |                    |
+|    |                    |
+| 40 |                    |
+
+
+*** 10
+
+
+https://docs.python-guide.org/writing/structure/   tests/context.py
+
+
+| 2 parts            |
+|                    |
+| tests/pathofpdf.py |
+|                    |
+| import             |
+
+
+*** 20
+
+
+[[file+sys:tests]]
+
+
+[[file:readme.org::tests]]  tests/path/  50
+
+
+#+HEADERS: :tangle tests/pathofpdf.py
+
+#+HEADERS: :tangle tests/path/context.py
+#+HEADERS: :results silent
+#+HEADERS: :results raw
+#+BEGIN_SRC sh
+
+  import os
+
+  home_path = os.path.expanduser("~")
+
+  folder = "files/111m1"
+
+  file = "111020_33_醫學(五)（包括外科.pdf"
+
+  pathofpdf = os.path.join(home_path, folder, file)
+
+#+END_SRC
+
+
+*** 30
+
+
+
+** tests/version.ipynb
 
 *** 0
 
